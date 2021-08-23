@@ -31,7 +31,7 @@ CREATE TABLE `control_de_libros`.`clientes` (
   `numero_pedido` INT NULL,
   `fecha_pedido` VARCHAR(45) NULL,
   `referencia_libro_de_venta` VARCHAR(45) NULL,
-  `referencia_cliente_de _venta` VARCHAR(45) NULL,
+  `referencia_cliente_de_venta` VARCHAR(45) NULL,
   `cantidad_compra` INT NULL,
   `monto_total` DECIMAL(2) NULL,
   PRIMARY KEY (`id_venta`));
