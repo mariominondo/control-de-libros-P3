@@ -1,0 +1,37 @@
+CREATE TABLE `control_de_libros`.`clientes` (
+  `id_cliente` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL,
+  `direccion` VARCHAR(45) NULL,
+  `telefono` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_cliente`));
+
+  CREATE TABLE `control_de_libros`.`libros` (
+  `id_libro` INT NOT NULL AUTO_INCREMENT,
+  `titulo` VARCHAR(45) NULL,
+  `genero_literario` VARCHAR(45) NULL,
+  `editorial` VARCHAR(45) NULL,
+  `autor` VARCHAR(45) NULL,
+  `anio_edicion` VARCHAR(45) NULL,
+  `numero_edicion` VARCHAR(45) NULL,
+  `pais_origin` VARCHAR(45) NULL,
+  `numero_paginas` VARCHAR(45) NULL,
+  `cantidad_ejemplares` VARCHAR(45) NULL,
+  `precio` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_libro`));
+
+  CREATE TABLE `control_de_libros`.`ejemplar` (
+  `id_ejemplar` INT NOT NULL AUTO_INCREMENT,
+  `numero` INT NULL,
+  `referencia_libro` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_ejemplar`));
+
+  CREATE TABLE `control_de_libros`.`ventas` (
+  `id_venta` INT NOT NULL AUTO_INCREMENT,
+  `numero_pedido` INT NULL,
+  `fecha_pedido` VARCHAR(45) NULL,
+  `referencia_libro_de_venta` VARCHAR(45) NULL,
+  `referencia_cliente_de _venta` VARCHAR(45) NULL,
+  `cantidad_compra` INT NULL,
+  `monto_total` DECIMAL(2) NULL,
+  PRIMARY KEY (`id_venta`));
