@@ -24,10 +24,10 @@ DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `clientes` (
   `id_cliente` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) DEFAULT NULL,
-  `direccion` varchar(45) DEFAULT NULL,
-  `telefono` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `direccion` varchar(45) NOT NULL,
+  `telefono` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
   PRIMARY KEY (`id_cliente`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -77,16 +77,16 @@ DROP TABLE IF EXISTS `libros`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `libros` (
   `codigo_libro` int(11) NOT NULL,
-  `titulo` varchar(45) DEFAULT NULL,
-  `genero_literario` varchar(45) DEFAULT NULL,
-  `editorial` varchar(45) DEFAULT NULL,
-  `autor` varchar(45) DEFAULT NULL,
-  `anio_edicion` varchar(45) DEFAULT NULL,
-  `numero_edicion` varchar(45) DEFAULT NULL,
+  `titulo` varchar(45) NOT NULL,
+  `genero_literario` varchar(45) NOT NULL,
+  `editorial` varchar(45) NOT NULL,
+  `autor` varchar(45) NOT NULL,
+  `anio_edicion` year(4) NOT NULL,
+  `numero_edicion` int(4) NOT NULL,
   `pais_origen` varchar(45) NOT NULL,
-  `numero_paginas` varchar(45) DEFAULT NULL,
-  `cantidad_ejemplares` varchar(45) DEFAULT NULL,
-  `precio` varchar(45) DEFAULT NULL,
+  `numero_paginas` int(5) NOT NULL,
+  `cantidad_ejemplares` int(4) NOT NULL,
+  `precio` decimal(4,2) NOT NULL,
   PRIMARY KEY (`codigo_libro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -97,7 +97,7 @@ CREATE TABLE `libros` (
 
 LOCK TABLES `libros` WRITE;
 /*!40000 ALTER TABLE `libros` DISABLE KEYS */;
-INSERT INTO `libros` VALUES (1,'El PRincipito','Fantasia','Richmond','David Arreaga','2000','tercera','Guatemala','100','1000','Q150');
+INSERT INTO `libros` VALUES (1,'El PRincipito','Fantasia','Richmond','David Arreaga',2000,0,'Guatemala',100,1000,0.00);
 /*!40000 ALTER TABLE `libros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,11 +110,11 @@ DROP TABLE IF EXISTS `ventas`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ventas` (
   `numero_pedido` int(11) NOT NULL,
-  `fecha_pedido` varchar(45) DEFAULT NULL,
+  `fecha_pedido` date NOT NULL,
   `referencia_libro` int(11) NOT NULL,
   `referencia_cliente` int(11) NOT NULL,
-  `cantidad_compra` int(11) DEFAULT NULL,
-  `monto_total` decimal(2,0) DEFAULT NULL,
+  `cantidad_compra` int(11) NOT NULL,
+  `monto_total` decimal(2,0) NOT NULL,
   PRIMARY KEY (`numero_pedido`),
   KEY `referencia_libro` (`referencia_libro`),
   KEY `referencia_cliente` (`referencia_cliente`),
@@ -141,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-27 17:17:34
+-- Dump completed on 2021-09-03 11:46:48
