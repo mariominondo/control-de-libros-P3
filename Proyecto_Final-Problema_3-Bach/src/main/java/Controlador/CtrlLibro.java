@@ -8,6 +8,7 @@ import Vista.FormMenuPrincipal;
 import Vista.FormTablaLibros;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 public class CtrlLibro implements ActionListener {
 
@@ -24,10 +25,10 @@ public class CtrlLibro implements ActionListener {
         this.frmTablaLibros = frmTablaLibros;
         this.frmLibro = frmLibro;
         
-        this.frmMenuPrincipal.btnLibros;
-        
-        this.frmTablaLibros.btnCrear;
-        this.frmTablaLibros.btnBuscar;
+        JButton btnLibros = this.frmMenuPrincipal.btnLibros;
+                
+        JButton btnCrear = this.frmTablaLibros.btnCrear ;
+        JButton btnBuscar = this.frmTablaLibros.btnBuscar;
     }
     
     public void iniciar() {    

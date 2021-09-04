@@ -1,9 +1,9 @@
 
 package Modelo;
 
-import com.mysql.cj.protocol.Resultset;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -103,7 +103,7 @@ public class ConsultasLibro extends MiConexion{
      
     public boolean buscar (Libro libro){
       PreparedStatement ps = null;
-      Resultset rs = null;
+      ResultSet rs = null;
       Connection con = getConnection();
 
       String sql = "SELECT * FROM libros WHERE codigo_libro=?;";   
@@ -115,7 +115,7 @@ public class ConsultasLibro extends MiConexion{
           
           if(rs.next()){
               libro.setCodigo_libro(Integer.parseInt(rs.getString("codigo_libro")));
-              libro.setTitulo(rs.get);
+              //libro.setTitulo(rs.get);
           }
           
           JOptionPane.showMessageDialog(null, "Libro guardado exitosamente!");

@@ -1,19 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vista;
 
-/**
- *
- * @author mariu
- */
+
 public class FormLibro extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormLibro
-     */
     public FormLibro() {
         initComponents();
     }
@@ -211,39 +201,7 @@ public class FormLibro extends javax.swing.JFrame {
     }//GEN-LAST:event_tfAutorActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        String codigo = tfCodigo.getText();
-        String titulo = tfTitulo.getText();
-        String generoLiterario = tfGeneroLiterario.getText();
-        String editorial = tfEditorial.getText();
-        String autor = tfAutor.getText();
-        String anioEdicion = tfAnioEdicion.getText();
-        String noEdicion = tfNoEdicion.getText();
-        String paisOrigen = tfPaisOrigen.getText();
-        String noPaginas = tfNoPaginas.getText();
-        String cantidadEjemplares = tfCantidadEjemplares.getText();
-        String precioVenta = tfPrecioVenta.getText();
-
-        try {
-            MiConexion miCon = new MiConexion();
-            Connection con = miCon.getConnection();
-            String sql = "INSERT INTO libros (?,?,?,?,?,?,?,?,?,?,?)";
-            PreparedStatement pStmt = con.prepareStatement(sql);
-            pStmt.setString(1, codigo);
-            pStmt.setString(2, titulo);
-            pStmt.setString(3, generoLiterario);
-            pStmt.setString(4, editorial);
-            pStmt.setString(5, autor);
-            pStmt.setString(6, anioEdicion);
-            pStmt.setString(7, noEdicion);
-            pStmt.setString(8, paisOrigen);
-            pStmt.setString(9, noPaginas);
-            pStmt.setString(10, cantidadEjemplares);
-            pStmt.setString(11, precioVenta);
-            pStmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Libro guardado exitosamente!");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
