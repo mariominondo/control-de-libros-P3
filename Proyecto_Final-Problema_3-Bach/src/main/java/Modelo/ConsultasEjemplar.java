@@ -7,29 +7,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-public class ConsultasLibro extends MiConexion{
+public class ConsultasEjemplar extends MiConexion{
     
-    public boolean crear(Libro libro){
+    public boolean crear(Ejemplar ejemplar){
         PreparedStatement ps = null;
         Connection con = getConnection();
         
-        String sql = "INSERT INTO libros (?,?,?,?,?,?,?,?,?,?,?);";   
+        String sql = "INSERT INTO ejemplares (?,?);";   
                 
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, libro.getCodigo_libro());
-            ps.setString(2, libro.getTitulo());
-            ps.setString(3, libro.getGenero_literario());
-            ps.setString(4, libro.getEditorial());
-            ps.setString(5, libro.getAutor());
-            ps.setDate(6, libro.getAnio_edicion());
-            ps.setInt(7, libro.getNumero_edicion());
-            ps.setString(8, libro.getPais_origen());
-            ps.setInt(9, libro.getNumero_paginas());
-            ps.setInt(10, libro.getCantidad_ejemplares());
-            ps.setDouble(11, libro.getPrecio());
+            ps.setInt(1, ejemplar.getNumero());
+            ps.setInt(2, ejemplar.getReferencia_libro());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Libro guardado exitosamente!");
+            JOptionPane.showMessageDialog(null, "Ejemplar creado exitosamente!");
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -43,27 +34,20 @@ public class ConsultasLibro extends MiConexion{
         }
     }
     
-    public boolean modificar (Libro libro){
+    public boolean modificar (Ejemplar ejemplar){
         PreparedStatement ps = null;
         Connection con = getConnection();
         
-        String sql = "UPDATE libros SET (titulo=?,genero_literario=?, editorial=?, autor=?, anio_edicion=?, numero_edicion=?, pais_origen=?, numero_paginas=?, cantidad_ejemplares=?, precio=?, WHERE codigo_libro=?;";   
+        String sql = "UPDATE ejemplares SET (numero=?, referencia_libro=? WHERE numero=? AND referencia_libro=?;";   
                 
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, libro.getTitulo());
-            ps.setString(2, libro.getGenero_literario());
-            ps.setString(3, libro.getEditorial());
-            ps.setString(4, libro.getAutor());
-            ps.setDate(5, libro.getAnio_edicion());
-            ps.setInt(6, libro.getNumero_edicion());
-            ps.setString(7, libro.getPais_origen());
-            ps.setInt(8, libro.getNumero_paginas());
-            ps.setInt(9, libro.getCantidad_ejemplares());
-            ps.setDouble(10, libro.getPrecio());            
-            ps.setInt(11, libro.getCodigo_libro());
+            ps.setInt(1, ejemplar.getNumero());
+            ps.setInt(2, ejemplar.getReferencia_libro());
+            ps.setDouble(3, ejemplar.getNumero());            
+            ps.setInt(4, ejemplar.getReferencia_libro());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Libro modificado exitosamente!");
+            JOptionPane.showMessageDialog(null, "Ejemplar modificado exitosamente!");
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -77,15 +61,16 @@ public class ConsultasLibro extends MiConexion{
         }
     }
     
-    public boolean eliminar (Libro libro){
+    public boolean eliminar (Ejemplar ejemplar){
         PreparedStatement ps = null;
         Connection con = getConnection();
         
-        String sql = "DELETE FROM libros WHERE codigo_libro=?;";   
+        String sql = "DELETE FROM ejemplares WHERE numero=? AND referencia_libro=?;";   
                 
         try {
             ps = con.prepareStatement(sql);          
-            ps.setInt(1, libro.getCodigo_libro());
+            ps.setInt(1, ejemplar.getNumero());  
+            ps.setInt(2, ejemplar.getReferencia_libro());
             ps.execute();
             JOptionPane.showMessageDialog(null, "Libro eliminado exitosamente!");
             return true;
@@ -101,23 +86,24 @@ public class ConsultasLibro extends MiConexion{
         }
     }
      
-    public boolean buscar (Libro libro){
+    public boolean buscar (Ejemplar ejemplar){
       PreparedStatement ps = null;
       ResultSet rs = null;
       Connection con = getConnection();
 
-      String sql = "SELECT * FROM libros WHERE codigo_libro=?;";   
+      String sql = "SELECT * FROM ejemplares WHERE numero=? AND referencia_libro=?;";   
 
       try {
           ps = con.prepareStatement(sql);          
-          ps.setInt(1, libro.getCodigo_libro());
+          ps.setInt(1, ejemplar.getNumero()); 
+          ps.setInt(2, ejemplar.getReferencia_libro());
           rs = ps.executeQuery();
           
           if(rs.next()){
-              libro.setCodigo_libro(Integer.parseInt(rs.getString("codigo_libro")));
+              ejemplar.setNumero(Integer.parseInt(rs.getString("numero")));
+              ejemplar.setReferencia_libro(Integer.parseInt(rs.getString("referencia_libro")));
               //libro.setTitulo(rs.get);
           }
-          
           return true;
       } catch (SQLException e) {
           JOptionPane.showMessageDialog(null, e.getMessage());
