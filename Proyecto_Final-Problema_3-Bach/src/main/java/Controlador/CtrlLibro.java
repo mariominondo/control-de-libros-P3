@@ -24,10 +24,10 @@ public class CtrlLibro implements ActionListener {
         this.frmTablaLibros = frmTablaLibros;
         this.frmLibro = frmLibro;
         
-        this.frmMenuPrincipal.btnLibros;
+        this.frmMenuPrincipal.btnLibros.addActionListener(this);
                 
-        this.frmTablaLibros.btnCrear ;
-        this.frmTablaLibros.btnBuscar;
+        this.frmTablaLibros.btnCrear.addActionListener(this);
+        this.frmTablaLibros.btnBuscar.addActionListener(this);
     }
     
     public void iniciar() {    
@@ -44,6 +44,8 @@ public class CtrlLibro implements ActionListener {
         if(e.getSource() == this.frmTablaLibros.btnCrear){
             frmLibro.setVisible(true);
         }
+        
+        
     }
     
 }
