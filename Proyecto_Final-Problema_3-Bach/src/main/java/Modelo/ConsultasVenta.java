@@ -46,13 +46,13 @@ public class ConsultasVenta extends MiConexion{
                 
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, venta.getNumero_pedido());
-            ps.setString(2, venta.getFecha_pedido());
-            ps.setString(3, venta.getReferencia_libro());
-            ps.setString(4, venta.getReferencia_cliente());
-            ps.setDate(5, venta.getCantidad_compra());
-            ps.setInt(6, venta.getMonto_total());
-            ps.setString(7, venta.getNumero_pedido());
+            ps.setInt(1, venta.getNumero_pedido());
+            ps.setDate(2, venta.getFecha_pedido());
+            ps.setInt(3, venta.getReferencia_libro());
+            ps.setInt(4, venta.getReferencia_cliente());
+            ps.setInt(5, venta.getCantidad_compra());
+            ps.setDouble(6, venta.getMonto_total());
+            ps.setInt(7, venta.getNumero_pedido());
             ps.execute();
             JOptionPane.showMessageDialog(null, "Venta modificada exitosamente!");
             return true;

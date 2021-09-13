@@ -3,7 +3,7 @@ package Modelo;
 
 import java.sql.Date;
 
-public class Libro {
+public class Venta {
     
     private int numero_pedido;
     private Date fecha_pedido;

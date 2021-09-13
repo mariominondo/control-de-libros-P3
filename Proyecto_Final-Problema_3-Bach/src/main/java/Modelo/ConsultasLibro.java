@@ -115,7 +115,6 @@ public class ConsultasLibro extends MiConexion{
           
           if(rs.next()){
               libro.setCodigo_libro(Integer.parseInt(rs.getString("codigo_libro")));
-              //libro.setTitulo(rs.get);
           }
           
           return true;

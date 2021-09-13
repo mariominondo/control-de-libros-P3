@@ -40,9 +40,9 @@ public class FormLibro extends javax.swing.JFrame {
         tfNoPaginas = new javax.swing.JTextField();
         tfCantidadEjemplares = new javax.swing.JTextField();
         tfPrecioVenta = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,16 +78,16 @@ public class FormLibro extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Agregar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
 
-        jButton6.setText("Modificar");
+        btnModificar.setText("Modificar");
 
-        jButton7.setText("Eliminar");
+        btnEliminar.setText("Eliminar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,11 +143,11 @@ public class FormLibro extends javax.swing.JFrame {
                         .addComponent(tfCantidadEjemplares, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(320, 320, 320)
-                        .addComponent(jButton5)
+                        .addComponent(btnAgregar)
                         .addGap(9, 9, 9)
-                        .addComponent(jButton6)
+                        .addComponent(btnModificar)
                         .addGap(5, 5, 5)
-                        .addComponent(jButton7)))
+                        .addComponent(btnEliminar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -187,9 +187,9 @@ public class FormLibro extends javax.swing.JFrame {
                     .addComponent(tfCantidadEjemplares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7))
+                    .addComponent(btnAgregar)
+                    .addComponent(btnModificar)
+                    .addComponent(btnEliminar))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -200,9 +200,9 @@ public class FormLibro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfAutorActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,9 +240,9 @@ public class FormLibro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton5;
-    public javax.swing.JButton jButton6;
-    public javax.swing.JButton jButton7;
+    public javax.swing.JButton btnAgregar;
+    public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

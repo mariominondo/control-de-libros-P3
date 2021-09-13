@@ -1,23 +1,23 @@
 
 package Controlador;
 
-import Modelo.ConsultasLibro;
-import Modelo.Libro;
-import Vista.FormLibro;
+import Modelo.ConsultasVenta;
+import Modelo.Venta;
+import Vista.FormVenta;
 import Vista.FormMenuPrincipal;
-import Vista.FormTablaLibros;
+import Vista.FormTablaVentas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CtrlLibro implements ActionListener {
+public class CtrlVenta implements ActionListener {
 
-    private Libro modLibro;
-    private ConsultasLibro modConsultasLibro;
+    private Venta modVenta;
+    private ConsultasVenta modConsultasVenta;
     private FormMenuPrincipal frmMenuPrincipal;
-    private FormTablaLibros frmTablaLibros;
-    private FormLibro frmLibro;
+    private FormTablaVentas frmTablaVentas;
+    private FormVenta frmVenta;
     
-    public CtrlLibro (Libro modLibro, ConsultasLibro modConsultasLibro, FormMenuPrincipal frmMenuPrincipal, FormTablaLibros frmTablaLibros, FormLibro frmLibro) {
+    public CtrlVenta (Libro modLibro, ConsultasLibro modConsultasLibro, FormMenuPrincipal frmMenuPrincipal, FormTablaLibros frmTablaLibros, FormLibro frmLibro) {
         this.modLibro = modLibro;
         this.modConsultasLibro = modConsultasLibro;
         this.frmMenuPrincipal = frmMenuPrincipal;
