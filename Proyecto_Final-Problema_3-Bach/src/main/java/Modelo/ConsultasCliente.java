@@ -104,6 +104,10 @@ public class ConsultasCliente extends MiConexion{
           
           if(rs.next()){
               cliente.setId_cliente(Integer.parseInt(rs.getString("id_cliente")));
+              cliente.setNombre(rs.getString("nombre"));
+              cliente.setDireccion(rs.getString("direccion"));
+              cliente.setTelefono(rs.getString("telefono"));
+              cliente.setEmail(rs.getString("email"));
           }
           return true;
       } catch (SQLException e) {

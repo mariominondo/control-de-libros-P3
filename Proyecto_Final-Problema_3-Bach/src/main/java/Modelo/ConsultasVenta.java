@@ -2,6 +2,7 @@
 package Modelo;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -106,6 +107,11 @@ public class ConsultasVenta extends MiConexion{
           
           if(rs.next()){
               venta.setNumero_pedido(Integer.parseInt(rs.getString("numero_pedido")));
+              venta.setFechaPedido(Date.valueOf(rs.getString("fecha_pedido")));
+              venta.setReferencia_libro(Integer.parseInt(rs.getString("referencia_libro")));
+              venta.setReferencia_cliente(Integer.parseInt(rs.getString("referencia_cliente")));
+              venta.setCantidad_compra(rs.getString("cantidad_compra"));
+              venta.setMonto_total(rs.getString("monto_total"));
           }
           
           return true;

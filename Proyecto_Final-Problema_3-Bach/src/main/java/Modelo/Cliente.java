@@ -15,7 +15,7 @@ public class Cliente {
         return id_cliente;
     }
 
-    public void setId_cliente() {
+    public void setId_cliente(int id_cliente) {
         this.id_cliente = id_cliente;
     }
 
@@ -23,7 +23,7 @@ public class Cliente {
         return nombre;
     }
 
-    public void setNombre() {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
     
@@ -31,7 +31,7 @@ public class Cliente {
         return direccion;
     }
 
-    public void setDireccion() {
+    public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
@@ -39,7 +39,7 @@ public class Cliente {
         return telefono;
     }
 
-    public void setTelefono() {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -47,13 +47,8 @@ public class Cliente {
         return email;
     }
 
-    public void setEmail() {
+    public void setEmail(String email) {
         this.email = email;
-    }
-
-    void setId_cliente(int parseInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }   
     
 }

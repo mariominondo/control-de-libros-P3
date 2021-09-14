@@ -17,17 +17,17 @@ public class CtrlVenta implements ActionListener {
     private FormTablaVentas frmTablaVentas;
     private FormVenta frmVenta;
     
-    public CtrlVenta (Libro modLibro, ConsultasLibro modConsultasLibro, FormMenuPrincipal frmMenuPrincipal, FormTablaLibros frmTablaLibros, FormLibro frmLibro) {
-        this.modLibro = modLibro;
-        this.modConsultasLibro = modConsultasLibro;
+    public CtrlVenta (Venta modLibro, ConsultasVenta modConsultasVenta, FormMenuPrincipal frmMenuPrincipal, FormTablaVentas frmTablaVentas, FormVenta frmVenta) {
+        this.modVenta = modVenta;
+        this.modConsultasVenta = modConsultasVenta;
         this.frmMenuPrincipal = frmMenuPrincipal;
-        this.frmTablaLibros = frmTablaLibros;
-        this.frmLibro = frmLibro;
+        this.frmTablaVentas = frmTablaVentas;
+        this.frmVenta = frmVenta;
         
-        this.frmMenuPrincipal.btnLibros.addActionListener(this);
+        this.frmMenuPrincipal.btnVentas.addActionListener(this);
                 
-        this.frmTablaLibros.btnCrear.addActionListener(this);
-        this.frmTablaLibros.btnBuscar.addActionListener(this);
+        this.frmTablaVentas.btnCrear.addActionListener(this);
+        this.frmTablaVentas.btnBuscar.addActionListener(this);
     }
     
     public void iniciar() {    
@@ -37,15 +37,15 @@ public class CtrlVenta implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        if(e.getSource() == this.frmMenuPrincipal.btnLibros){
-            frmTablaLibros.setVisible(true);
+        if(e.getSource() == this.frmMenuPrincipal.btnVentas){
+            frmTablaVentas.setVisible(true);
         }
         
-        if(e.getSource() == this.frmTablaLibros.btnCrear){
-            frmLibro.setVisible(true);
+        if(e.getSource() == this.frmTablaVentas.btnCrear){
+            frmVenta.setVisible(true);
         }
         
-       if(e.getSource() == this.frmLibro.btnAgregar){
+       if(e.getSource() == this.frmVenta.btnCrear){
        }
        
         

@@ -2,6 +2,7 @@
 package Modelo;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -115,9 +116,20 @@ public class ConsultasLibro extends MiConexion{
           
           if(rs.next()){
               libro.setCodigo_libro(Integer.parseInt(rs.getString("codigo_libro")));
+              libro.setTitulo(rs.getString("titulo"));
+              libro.setGenero_literario(rs.getString("genero_literario"));
+              libro.setEditorial(rs.getString("editorial"));
+              libro.setAutor(rs.getString("autor"));
+              libro.setAnio_edicion(Date.valueOf(rs.getString("anio_edicion")));
+              libro.setNumero_edicion(Integer.parseInt(rs.getString("numero_edicion")));
+              libro.setPais_origen(rs.getString("pais_origen"));
+              libro.setNumero_paginas(Integer.parseInt(rs.getString("numero_paginas")));
+              libro.setCantidad_ejemplares(Integer.parseInt(rs.getString("cantidad_ejemplares")));
+              libro.setPrecio(Double.parseDouble(rs.getString("precio")));
+              return true;
           }
           
-          return true;
+          return false;
       } catch (SQLException e) {
           JOptionPane.showMessageDialog(null, e.getMessage());
           return false;

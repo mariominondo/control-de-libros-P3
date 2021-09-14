@@ -102,9 +102,9 @@ public class ConsultasEjemplar extends MiConexion{
           if(rs.next()){
               ejemplar.setNumero(Integer.parseInt(rs.getString("numero")));
               ejemplar.setReferencia_libro(Integer.parseInt(rs.getString("referencia_libro")));
-              //libro.setTitulo(rs.get);
+              return true;
           }
-          return true;
+          return false;
       } catch (SQLException e) {
           JOptionPane.showMessageDialog(null, e.getMessage());
           return false;
