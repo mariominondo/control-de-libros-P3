@@ -59,6 +59,4 @@ public class Venta {
     public void setMonto_total(Double monto_total) {
         this.monto_total = monto_total;
     }
-    
-    
 }

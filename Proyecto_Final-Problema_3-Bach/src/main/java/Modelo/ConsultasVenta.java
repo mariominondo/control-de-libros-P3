@@ -110,11 +110,11 @@ public class ConsultasVenta extends MiConexion{
               venta.setFechaPedido(Date.valueOf(rs.getString("fecha_pedido")));
               venta.setReferencia_libro(Integer.parseInt(rs.getString("referencia_libro")));
               venta.setReferencia_cliente(Integer.parseInt(rs.getString("referencia_cliente")));
-              venta.setCantidad_compra(rs.getString("cantidad_compra"));
-              venta.setMonto_total(rs.getString("monto_total"));
-          }
-          
-          return true;
+              venta.setCantidad_compra(Integer.parseInt(rs.getString("cantidad_compra")));
+              venta.setMonto_total(Double.parseDouble(rs.getString("monto_total")));
+              return true;
+          }          
+          return false;
       } catch (SQLException e) {
           JOptionPane.showMessageDialog(null, e.getMessage());
           return false;

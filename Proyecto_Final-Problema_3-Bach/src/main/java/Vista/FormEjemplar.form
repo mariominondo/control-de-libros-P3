@@ -31,8 +31,8 @@
               </Group>
               <EmptySpace pref="23" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTextField12" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
-                  <Component id="jTextField13" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
+                  <Component id="txtNumero" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
+                  <Component id="txtReferenciaLibro" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
           </Group>
@@ -62,12 +62,12 @@
               <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField12" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField13" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtReferenciaLibro" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
@@ -87,7 +87,7 @@
         <Property name="text" type="java.lang.String" value="N&#xfa;mero:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField12">
+    <Component class="javax.swing.JTextField" name="txtNumero">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
@@ -97,7 +97,7 @@
         <Property name="text" type="java.lang.String" value="Referencia del Libro:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField13">
+    <Component class="javax.swing.JTextField" name="txtReferenciaLibro">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>

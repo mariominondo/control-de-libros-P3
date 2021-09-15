@@ -30,10 +30,8 @@ public class ConsultasLibro extends MiConexion{
             ps.setInt(10, libro.getCantidad_ejemplares());
             ps.setDouble(11, libro.getPrecio());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Libro guardado exitosamente!");
             return true;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             return false;
         } finally {
             try {

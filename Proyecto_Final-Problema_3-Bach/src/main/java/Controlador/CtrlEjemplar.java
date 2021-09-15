@@ -8,6 +8,7 @@ import Vista.FormMenuPrincipal;
 import Vista.FormTablaEjemplares;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 public class CtrlEjemplar implements ActionListener {
 
@@ -28,25 +29,39 @@ public class CtrlEjemplar implements ActionListener {
                 
         this.frmTablaEjemplares.btnCrear.addActionListener(this);
         this.frmTablaEjemplares.btnBuscar.addActionListener(this);
+        
+        this.frmEjemplar.btnCrear.addActionListener(this);
+        this.frmEjemplar.btnEliminar.addActionListener(this);
     }
-    
-//    public void iniciar() {    
-//        frmMenuPrincipal.setTitle("Menú Principal");
-//    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
         if(e.getSource() == this.frmMenuPrincipal.btnEjemplares){
-            frmTablaEjemplares.setVisible(true);
+            this.frmTablaEjemplares.setVisible(true);
         }
         
         if(e.getSource() == this.frmTablaEjemplares.btnCrear){
-            frmEjemplar.setVisible(true);
+            this.frmEjemplar.setVisible(true);
         }
         
        if(e.getSource() == this.frmEjemplar.btnCrear){
+           this.modEjemplar.setNumero(Integer.parseInt(this.frmEjemplar.txtNumero.getText()));
+           this.modEjemplar.setReferencia_libro(Integer.parseInt(this.frmEjemplar.txtReferenciaLibro.getText()));
            
+           if(this.modConsultasEjemplar.crear(this.modEjemplar)) {
+               JOptionPane.showMessageDialog(null, "Referencia agregada correctamente.");
+           } else {
+               JOptionPane.showMessageDialog(null, "Error al Agregar.");
+           }
+       }
+       
+       if(e.getSource() == this.frmEjemplar.btnEliminar) {
+           if(this.modConsultasEjemplar.eliminar(this.modEjemplar)) {
+               JOptionPane.showMessageDialog(null, "Ejemplar Eliminado Correctamente.");
+           } else {
+               JOptionPane.showMessageDialog(null, "El ejemplar no se puedo eliminar.");
+           }
        }
        
         

@@ -13,7 +13,7 @@ public class ConsultasEjemplar extends MiConexion{
         PreparedStatement ps = null;
         Connection con = getConnection();
         
-        String sql = "INSERT INTO ejemplares (?,?);";   
+        String sql = "INSERT INTO ejemplares VALUES (?,?);";   
                 
         try {
             ps = con.prepareStatement(sql);
