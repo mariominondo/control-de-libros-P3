@@ -25,7 +25,6 @@ public class ConsultasVenta extends MiConexion{
             ps.setInt(5, venta.getCantidad_compra());
             ps.setDouble(6, venta.getMonto_total());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Venta realizada exitosamente!");
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -43,7 +42,7 @@ public class ConsultasVenta extends MiConexion{
         PreparedStatement ps = null;
         Connection con = getConnection();
         
-        String sql = "UPDATE ventas SET (numero_pedido=?, fecha_pedido=?, referencia_libro=?, referencia_cliente=?, cantidad_compra=?, monto_total=?, WHERE numero_pedido=?;";   
+        String sql = "UPDATE ventas SET numero_pedido=?, fecha_pedido=?, referencia_libro=?, referencia_cliente=?, cantidad_compra=?, monto_total=?, WHERE numero_pedido=?;";   
                 
         try {
             ps = con.prepareStatement(sql);
@@ -55,7 +54,6 @@ public class ConsultasVenta extends MiConexion{
             ps.setDouble(6, venta.getMonto_total());
             ps.setInt(7, venta.getNumero_pedido());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Venta modificada exitosamente!");
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -79,7 +77,6 @@ public class ConsultasVenta extends MiConexion{
             ps = con.prepareStatement(sql);          
             ps.setInt(1, venta.getNumero_pedido());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Venta eliminada exitosamente!");
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
