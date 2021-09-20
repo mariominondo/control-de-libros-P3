@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -187,7 +189,11 @@ public class FormTablaEjemplares extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormTablaEjemplares().setVisible(true);
+                try {
+                    new FormTablaEjemplares().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(FormTablaEjemplares.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

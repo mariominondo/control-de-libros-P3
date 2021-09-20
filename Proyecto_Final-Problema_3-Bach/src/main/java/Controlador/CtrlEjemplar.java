@@ -49,8 +49,8 @@ public class CtrlEjemplar implements ActionListener {
            this.modEjemplar.setNumero(Integer.parseInt(this.frmEjemplar.txtNumero.getText()));
            this.modEjemplar.setReferencia_libro(Integer.parseInt(this.frmEjemplar.txtReferenciaLibro.getText()));
            
-           if(this.modConsultasEjemplar.crear(this.modEjemplar)) {
-               JOptionPane.showMessageDialog(null, "Referencia agregada correctamente.");
+           if(this.modConsultasEjemplar.crear(this.modEjemplar)) {               
+            JOptionPane.showMessageDialog(null, "Ejemplar creado exitosamente!");
            } else {
                JOptionPane.showMessageDialog(null, "Error al Agregar.");
            }

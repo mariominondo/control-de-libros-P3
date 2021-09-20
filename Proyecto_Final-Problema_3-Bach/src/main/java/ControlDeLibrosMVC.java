@@ -20,10 +20,11 @@ import Vista.FormTablaEjemplares;
 import Vista.FormTablaLibros;
 import Vista.FormTablaVentas;
 import Vista.FormVenta;
+import java.sql.SQLException;
 
 public class ControlDeLibrosMVC {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         
         FormMenuPrincipal frmMenuPrincipal = new FormMenuPrincipal();
         
