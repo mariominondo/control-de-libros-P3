@@ -1,14 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vista;
 
-/**
- *
- * @author mariu
- */
+import Modelo.MiConexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
+
 public class FormTablaEjemplares extends javax.swing.JFrame {
 
     /**
@@ -16,6 +17,44 @@ public class FormTablaEjemplares extends javax.swing.JFrame {
      */
     public FormTablaEjemplares() {
         initComponents();
+        
+        txtBuscar.setText("Buscar...");
+        
+        DefaultTableModel tModelo = new DefaultTableModel();
+        jtEjemplares.setModel(tModelo);
+        
+        tModelo.addColumn("Número");        
+        tModelo.addColumn("Referencia Libro");
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        MiConexion miCon = new MiConexion();
+        Connection con = miCon.getConnection();
+        
+        String sql = "SELECT numero, referencia_libro FROM ejemplares";
+        
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMD = rs.getMetaData();
+            int cantidadColumnas = rsMD.getColumnCount();
+            
+            while (rs.next()) {
+                Object[] filas = new Object[cantidadColumnas];
+                
+                for(int i=0; i<cantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                
+                tModelo.addRow(filas);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        }
     }
 
     /**
@@ -29,10 +68,10 @@ public class FormTablaEjemplares extends javax.swing.JFrame {
 
         jLabel42 = new javax.swing.JLabel();
         btnCrear = new javax.swing.JButton();
-        jTextField27 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtEjemplares = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,7 +87,7 @@ public class FormTablaEjemplares extends javax.swing.JFrame {
 
         btnBuscar.setText("Buscar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtEjemplares.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -74,7 +113,7 @@ public class FormTablaEjemplares extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jtEjemplares);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,7 +126,7 @@ public class FormTablaEjemplares extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCrear)
                         .addGap(37, 37, 37)
-                        .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -101,7 +140,7 @@ public class FormTablaEjemplares extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCrear)
-                    .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -156,7 +195,7 @@ public class FormTablaEjemplares extends javax.swing.JFrame {
     public javax.swing.JButton btnCrear;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JTable jTable1;
-    public javax.swing.JTextField jTextField27;
+    public javax.swing.JTable jtEjemplares;
+    public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
