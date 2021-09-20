@@ -8,7 +8,7 @@ public class MiConexion {
     
     private final String bd = "control_de_libros";
     private final String user = "root";
-    private final String password = "";    
+    private final String password = "Password123#@!";    
     private final String url = "jdbc:mysql://localhost/" + bd;
     
     private Connection con = null;
