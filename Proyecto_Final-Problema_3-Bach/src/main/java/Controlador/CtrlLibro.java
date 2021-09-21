@@ -56,7 +56,7 @@ public class CtrlLibro implements ActionListener {
            this.modLibro.setGenero_literario(this.frmLibro.tfGeneroLiterario.getText());
            this.modLibro.setEditorial(this.frmLibro.tfEditorial.getText());
            this.modLibro.setAutor(this.frmLibro.tfAutor.getText());
-           this.modLibro.setAnio_edicion(Date.valueOf(this.frmLibro.tfAnioEdicion.getText()));
+           this.modLibro.setAnio_edicion(this.frmLibro.tYearAnioEdicion.getYear());
            this.modLibro.setNumero_edicion(Integer.parseInt(this.frmLibro.tfNoEdicion.getText()));
            this.modLibro.setPais_origen(this.frmLibro.tfPaisOrigen.getText());
            this.modLibro.setNumero_paginas(Integer.parseInt(this.frmLibro.tfNoPaginas.getText()));

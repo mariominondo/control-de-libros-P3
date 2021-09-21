@@ -53,7 +53,7 @@ public class CtrlVenta implements ActionListener {
         
        if(e.getSource() == this.frmVenta.btnCrear){
            this.modVenta.setNumero_pedido(Integer.parseInt(this.frmVenta.txtNoDePedido.getText()));
-           this.modVenta.setFechaPedido(Date.valueOf(this.frmVenta.txtFechaDePedido.getText()));
+           this.modVenta.setFechaPedido(Date.valueOf(this.frmVenta.jdateFechaPedido.getDateFormatString()));
            this.modVenta.setReferencia_libro(Integer.parseInt(this.frmVenta.txtReferenciaLibro.getText()));
            this.modVenta.setReferencia_cliente(Integer.parseInt(this.frmVenta.txtReferenciaCliente.getText()));
            this.modVenta.setCantidad_compra(Integer.parseInt(this.frmVenta.txtCantidad.getText()));
@@ -68,7 +68,7 @@ public class CtrlVenta implements ActionListener {
        
        if (e.getSource() == this.frmVenta.btnModificar) {
            this.modVenta.setNumero_pedido(Integer.parseInt(this.frmVenta.txtNoDePedido.getText()));
-           this.modVenta.setFechaPedido(Date.valueOf(this.frmVenta.txtFechaDePedido.getText()));
+           this.modVenta.setFechaPedido(Date.valueOf(this.frmVenta.jdateFechaPedido.getDateFormatString()));
            this.modVenta.setReferencia_libro(Integer.parseInt(this.frmVenta.txtReferenciaLibro.getText()));
            this.modVenta.setReferencia_cliente(Integer.parseInt(this.frmVenta.txtReferenciaCliente.getText()));
            this.modVenta.setCantidad_compra(Integer.parseInt(this.frmVenta.txtCantidad.getText()));
