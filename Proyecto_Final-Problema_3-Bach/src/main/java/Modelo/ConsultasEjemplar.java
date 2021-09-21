@@ -20,7 +20,6 @@ public class ConsultasEjemplar extends MiConexion{
             ps.setInt(1, ejemplar.getNumero());
             ps.setInt(2, ejemplar.getReferencia_libro());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Ejemplar creado exitosamente!");
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());

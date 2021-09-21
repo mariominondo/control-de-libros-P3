@@ -5,6 +5,14 @@
  */
 package Vista;
 
+import Modelo.MiConexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author mariu
@@ -16,6 +24,47 @@ public class FormTablaClientes extends javax.swing.JFrame {
      */
     public FormTablaClientes() {
         initComponents();
+        
+        txtBuscar.setText("Buscar...");
+        
+        DefaultTableModel tModelo = new DefaultTableModel();
+        jtClientes.setModel(tModelo);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        MiConexion miCon = new MiConexion();
+        
+        Connection con = miCon.getConnection();
+        
+        String sql = "SELECT id_cliente, nombre, direccion, telefono, email FROM clientes;";
+        
+        try {        
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMD = rs.getMetaData();
+            int cantidadColumnas = rsMD.getColumnCount();
+            
+            tModelo.addColumn("ID Cliente");
+            tModelo.addColumn("Nombre");
+            tModelo.addColumn("Dirección");
+            tModelo.addColumn("Teléfono");
+            tModelo.addColumn("Email");
+            
+            while (rs.next()) {
+                Object[] filas = new Object[cantidadColumnas];
+                
+                for(int i=0; i<cantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                
+                tModelo.addRow(filas);
+            }
+                
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage()); // ex.toString()
+        }
     }
 
     /**

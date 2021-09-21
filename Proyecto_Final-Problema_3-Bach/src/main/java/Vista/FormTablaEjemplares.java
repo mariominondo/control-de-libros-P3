@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -15,7 +17,7 @@ public class FormTablaEjemplares extends javax.swing.JFrame {
     /**
      * Creates new form FormTablaEjemplares
      */
-    public FormTablaEjemplares() {
+    public FormTablaEjemplares() throws SQLException {
         initComponents();
         
         txtBuscar.setText("Buscar...");
@@ -23,24 +25,24 @@ public class FormTablaEjemplares extends javax.swing.JFrame {
         DefaultTableModel tModelo = new DefaultTableModel();
         jtEjemplares.setModel(tModelo);
         
-        tModelo.addColumn("Número");        
-        tModelo.addColumn("Referencia Libro");
-        
         PreparedStatement ps = null;
         ResultSet rs = null;
         
         MiConexion miCon = new MiConexion();
+        
         Connection con = miCon.getConnection();
+        String sql = "SELECT numero, referencia_libro FROM ejemplares;";
         
-        String sql = "SELECT numero, referencia_libro FROM ejemplares";
-        
-        try {
+        try {     
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             
             ResultSetMetaData rsMD = rs.getMetaData();
             int cantidadColumnas = rsMD.getColumnCount();
-            
+
+            tModelo.addColumn("Número");
+            tModelo.addColumn("Referencia de Libro");
+
             while (rs.next()) {
                 Object[] filas = new Object[cantidadColumnas];
                 
@@ -50,11 +52,11 @@ public class FormTablaEjemplares extends javax.swing.JFrame {
                 
                 tModelo.addRow(filas);
             }
+                
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage()); // ex.toString()
         }
-        
-        }
+
     }
 
     /**
@@ -185,7 +187,11 @@ public class FormTablaEjemplares extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormTablaEjemplares().setVisible(true);
+                try {
+                    new FormTablaEjemplares().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(FormTablaEjemplares.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -23,7 +23,7 @@ public class ConsultasLibro extends MiConexion{
             ps.setString(3, libro.getGenero_literario());
             ps.setString(4, libro.getEditorial());
             ps.setString(5, libro.getAutor());
-            ps.setDate(6, libro.getAnio_edicion());
+            ps.setInt(6, libro.getAnio_edicion());
             ps.setInt(7, libro.getNumero_edicion());
             ps.setString(8, libro.getPais_origen());
             ps.setInt(9, libro.getNumero_paginas());
@@ -54,7 +54,7 @@ public class ConsultasLibro extends MiConexion{
             ps.setString(2, libro.getGenero_literario());
             ps.setString(3, libro.getEditorial());
             ps.setString(4, libro.getAutor());
-            ps.setDate(5, libro.getAnio_edicion());
+            ps.setInt(5, libro.getAnio_edicion());
             ps.setInt(6, libro.getNumero_edicion());
             ps.setString(7, libro.getPais_origen());
             ps.setInt(8, libro.getNumero_paginas());
@@ -118,7 +118,7 @@ public class ConsultasLibro extends MiConexion{
               libro.setGenero_literario(rs.getString("genero_literario"));
               libro.setEditorial(rs.getString("editorial"));
               libro.setAutor(rs.getString("autor"));
-              libro.setAnio_edicion(Date.valueOf(rs.getString("anio_edicion")));
+              libro.setAnio_edicion(Integer.parseInt(rs.getString("anio_edicion")));
               libro.setNumero_edicion(Integer.parseInt(rs.getString("numero_edicion")));
               libro.setPais_origen(rs.getString("pais_origen"));
               libro.setNumero_paginas(Integer.parseInt(rs.getString("numero_paginas")));
