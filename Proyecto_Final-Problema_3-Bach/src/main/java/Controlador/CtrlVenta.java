@@ -9,6 +9,8 @@ import Vista.FormTablaVentas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 public class CtrlVenta implements ActionListener {
@@ -19,7 +21,7 @@ public class CtrlVenta implements ActionListener {
     private FormTablaVentas frmTablaVentas;
     private FormVenta frmVenta;
     
-    public CtrlVenta (Venta modLibro, ConsultasVenta modConsultasVenta, FormMenuPrincipal frmMenuPrincipal, FormTablaVentas frmTablaVentas, FormVenta frmVenta) {
+    public CtrlVenta (Venta modVenta, ConsultasVenta modConsultasVenta, FormMenuPrincipal frmMenuPrincipal, FormTablaVentas frmTablaVentas, FormVenta frmVenta) {
         this.modVenta = modVenta;
         this.modConsultasVenta = modConsultasVenta;
         this.frmMenuPrincipal = frmMenuPrincipal;
@@ -52,13 +54,20 @@ public class CtrlVenta implements ActionListener {
         }
         
        if(e.getSource() == this.frmVenta.btnCrear){
-           this.modVenta.setNumero_pedido(Integer.parseInt(this.frmVenta.txtNoDePedido.getText()));
-           this.modVenta.setFechaPedido(Date.valueOf(this.frmVenta.jdateFechaPedido.getDateFormatString()));
+           java.util.Date jdate = this.frmVenta.jdateFechaPedido.getDate();
+           SimpleDateFormat formatedDate = new SimpleDateFormat("yyyy-MM-dd");
+           String stringDate = formatedDate.format(jdate);
+           java.sql.Date sqlDate = java.sql.Date.valueOf(stringDate);
+           
+           
+           this.modVenta.setFechaPedido(sqlDate);
            this.modVenta.setReferencia_libro(Integer.parseInt(this.frmVenta.txtReferenciaLibro.getText()));
            this.modVenta.setReferencia_cliente(Integer.parseInt(this.frmVenta.txtReferenciaCliente.getText()));
            this.modVenta.setCantidad_compra(Integer.parseInt(this.frmVenta.txtCantidad.getText()));
            this.modVenta.setMonto_total(Double.parseDouble(this.frmVenta.txtMonto.getText()));
            
+           this.modVenta.setNumero_pedido(Integer.parseInt(this.frmVenta.txtNoDePedido.getText()));
+
            if (this.modConsultasVenta.crear(this.modVenta)) {
                JOptionPane.showMessageDialog(null, "Venta Creada correctamente");
            } else {

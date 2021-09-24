@@ -1,14 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vista;
 
-/**
- *
- * @author mariu
- */
+import Modelo.MiConexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 public class FormTablaVentas extends javax.swing.JFrame {
 
     /**
@@ -16,6 +16,50 @@ public class FormTablaVentas extends javax.swing.JFrame {
      */
     public FormTablaVentas() {
         initComponents();
+        
+        txtBuscar.setText("Buscar...");
+        
+        DefaultTableModel tModelo = new DefaultTableModel();
+        jtTablaVentas.setModel(tModelo);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        MiConexion miCon = new MiConexion();
+        
+        Connection con = miCon.getConnection();
+        
+        String sql = "SELECT numero_pedido, fecha_pedido, referencia_libro, \n " +
+                     "referencia_cliente, cantidad_compra, monto_total \n " +
+                     "FROM ventas;";
+        
+        try {        
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMD = rs.getMetaData();
+            int cantidadColumnas = rsMD.getColumnCount();
+            
+            tModelo.addColumn("numero_pedido");
+            tModelo.addColumn("fecha_pedido");
+            tModelo.addColumn("referencia_libro");
+            tModelo.addColumn("referencia_cliente");
+            tModelo.addColumn("cantidad_compra");
+            tModelo.addColumn("monto_total");
+            
+            while (rs.next()) {
+                Object[] filas = new Object[cantidadColumnas];
+                
+                for(int i=0; i<cantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                
+                tModelo.addRow(filas);
+            }
+                
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage()); // ex.toString()
+        }
     }
 
     /**
@@ -29,10 +73,10 @@ public class FormTablaVentas extends javax.swing.JFrame {
 
         jLabel45 = new javax.swing.JLabel();
         btnCrear = new javax.swing.JButton();
-        txtBucar = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jtVentas = new javax.swing.JTable();
+        jtTablaVentas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -48,7 +92,7 @@ public class FormTablaVentas extends javax.swing.JFrame {
 
         btnBuscar.setText("Buscar");
 
-        jtVentas.setModel(new javax.swing.table.DefaultTableModel(
+        jtTablaVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -67,7 +111,7 @@ public class FormTablaVentas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jtVentas);
+        jScrollPane3.setViewportView(jtTablaVentas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,7 +125,7 @@ public class FormTablaVentas extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(btnCrear)
                             .addGap(200, 200, 200)
-                            .addComponent(txtBucar, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -96,7 +140,7 @@ public class FormTablaVentas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCrear)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtBucar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,7 +195,7 @@ public class FormTablaVentas extends javax.swing.JFrame {
     public javax.swing.JButton btnCrear;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JScrollPane jScrollPane3;
-    public javax.swing.JTable jtVentas;
-    public javax.swing.JTextField txtBucar;
+    public javax.swing.JTable jtTablaVentas;
+    public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

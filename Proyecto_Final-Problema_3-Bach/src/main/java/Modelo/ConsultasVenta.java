@@ -14,7 +14,7 @@ public class ConsultasVenta extends MiConexion{
         PreparedStatement ps = null;
         Connection con = getConnection();
         
-        String sql = "INSERT INTO ventas (?,?,?,?,?,?);";   
+        String sql = "INSERT INTO ventas VALUES(?,?,?,?,?,?);";   
                 
         try {
             ps = con.prepareStatement(sql);
