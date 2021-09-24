@@ -51,20 +51,19 @@ public class CtrlLibro implements ActionListener {
         }
         
        if(e.getSource() == this.frmLibro.btnAgregar){
+           
+           
            this.modLibro.setCodigo_libro(Integer.parseInt(this.frmLibro.tfCodigo.getText()));
            this.modLibro.setTitulo(this.frmLibro.tfTitulo.getText());
            this.modLibro.setGenero_literario(this.frmLibro.tfGeneroLiterario.getText());
            this.modLibro.setEditorial(this.frmLibro.tfEditorial.getText());
            this.modLibro.setAutor(this.frmLibro.tfAutor.getText());
-           this.modLibro.setAnio_edicion(this.frmLibro.tYearAnioEdicion.getYear());
+           //this.modLibro.setAnio_edicion(this.frmLibro.tYearAnioEdicion.getYear());
            this.modLibro.setNumero_edicion(Integer.parseInt(this.frmLibro.tfNoEdicion.getText()));
            this.modLibro.setPais_origen(this.frmLibro.tfPaisOrigen.getText());
            this.modLibro.setNumero_paginas(Integer.parseInt(this.frmLibro.tfNoPaginas.getText()));
            this.modLibro.setCantidad_ejemplares(Integer.parseInt(this.frmLibro.tfCantidadEjemplares.getText()));
            this.modLibro.setPrecio(Double.parseDouble(this.frmLibro.tfPrecioVenta.getText()));
-           
-           
-           System.out.println("Boton Agregar presionado");
            if(this.modConsultasLibro.crear(this.modLibro)) {
                JOptionPane.showMessageDialog(null, "Libro guardado correctamente.");   
            } else {

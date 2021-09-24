@@ -27,7 +27,7 @@ public class FormEjemplar extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel15.setText("Número:");
 

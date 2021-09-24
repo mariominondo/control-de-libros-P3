@@ -44,7 +44,7 @@ public class FormVenta extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         jdateFechaPedido = new com.toedter.calendar.JDateChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel23.setText("VENTAS");

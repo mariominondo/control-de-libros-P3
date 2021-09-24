@@ -34,7 +34,7 @@ public class FormTablaVentas extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jtVentas = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel45.setText("Ventas");

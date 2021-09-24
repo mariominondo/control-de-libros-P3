@@ -75,7 +75,7 @@ public class FormTablaEjemplares extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jtEjemplares = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel42.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel42.setText("Ejemplares");

@@ -1,12 +1,69 @@
 
 package Vista;
 
+import Modelo.MiConexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 
 public class FormTablaLibros extends javax.swing.JFrame {
 
 
     public FormTablaLibros() {
         initComponents();
+        
+        txtBuscar.setText("Buscar...");
+        
+        DefaultTableModel tModelo = new DefaultTableModel();
+        jtTablaLibros.setModel(tModelo);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        MiConexion miCon = new MiConexion();
+        
+        Connection con = miCon.getConnection();
+        
+        String sql = "SELECT codigo_libro, titulo, genero_literario, editorial, \n"+
+                "autor, anio_edicion, numero_edicion, pais_origen, numero_paginas, \n" +
+                "cantidad_ejemplares, precio FROM libros;";
+        
+        try {        
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMD = rs.getMetaData();
+            int cantidadColumnas = rsMD.getColumnCount();
+            
+            tModelo.addColumn("codigo_libro");
+            tModelo.addColumn("titulo");
+            tModelo.addColumn("genero_literario");
+            tModelo.addColumn("editorial");
+            tModelo.addColumn("autor");
+            tModelo.addColumn("anio_edicion");
+            tModelo.addColumn("numero_edicion");
+            tModelo.addColumn("pais_origen");
+            tModelo.addColumn("cantidad_ejemplares");
+            tModelo.addColumn("numero_paginas");
+            tModelo.addColumn("precio");
+            
+            while (rs.next()) {
+                Object[] filas = new Object[cantidadColumnas];
+                
+                for(int i=0; i<cantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                
+                tModelo.addRow(filas);
+            }
+                
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage()); // ex.toString()
+        }
     }
 
     /**
@@ -22,10 +79,10 @@ public class FormTablaLibros extends javax.swing.JFrame {
         jtTablaLibros = new javax.swing.JTable();
         btnCrear = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        jtBuscar = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jtTablaLibros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -86,7 +143,7 @@ public class FormTablaLibros extends javax.swing.JFrame {
                             .addComponent(jLabel30)
                             .addComponent(btnCrear))
                         .addGap(482, 482, 482)
-                        .addComponent(jtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -98,7 +155,7 @@ public class FormTablaLibros extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel30)
                         .addGap(11, 11, 11)
@@ -159,7 +216,7 @@ public class FormTablaLibros extends javax.swing.JFrame {
     public javax.swing.JButton btnCrear;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTextField jtBuscar;
     public javax.swing.JTable jtTablaLibros;
+    public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

@@ -44,7 +44,7 @@ public class FormLibro extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         tYearAnioEdicion = new com.toedter.calendar.JYearChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

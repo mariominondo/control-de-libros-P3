@@ -83,7 +83,7 @@ public class FormTablaClientes extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel44.setText("Clientes");
