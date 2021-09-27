@@ -19,44 +19,6 @@ public class FormTablaEjemplares extends javax.swing.JFrame {
      */
     public FormTablaEjemplares() throws SQLException {
         initComponents();
-        
-        txtBuscar.setText("Buscar...");
-        
-        DefaultTableModel tModelo = new DefaultTableModel();
-        jtEjemplares.setModel(tModelo);
-        
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        
-        MiConexion miCon = new MiConexion();
-        
-        Connection con = miCon.getConnection();
-        String sql = "SELECT numero, referencia_libro FROM ejemplares;";
-        
-        try {     
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            
-            ResultSetMetaData rsMD = rs.getMetaData();
-            int cantidadColumnas = rsMD.getColumnCount();
-
-            tModelo.addColumn("Número");
-            tModelo.addColumn("Referencia de Libro");
-
-            while (rs.next()) {
-                Object[] filas = new Object[cantidadColumnas];
-                
-                for(int i=0; i<cantidadColumnas; i++){
-                    filas[i] = rs.getObject(i + 1);
-                }
-                
-                tModelo.addRow(filas);
-            }
-                
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage()); // ex.toString()
-        }
-
     }
 
     /**

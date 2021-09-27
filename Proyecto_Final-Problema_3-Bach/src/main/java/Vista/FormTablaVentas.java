@@ -1,14 +1,6 @@
 
 package Vista;
 
-import Modelo.MiConexion;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import javax.swing.table.DefaultTableModel;
-
 public class FormTablaVentas extends javax.swing.JFrame {
 
     /**
@@ -16,50 +8,6 @@ public class FormTablaVentas extends javax.swing.JFrame {
      */
     public FormTablaVentas() {
         initComponents();
-        
-        txtBuscar.setText("Buscar...");
-        
-        DefaultTableModel tModelo = new DefaultTableModel();
-        jtTablaVentas.setModel(tModelo);
-        
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        
-        MiConexion miCon = new MiConexion();
-        
-        Connection con = miCon.getConnection();
-        
-        String sql = "SELECT numero_pedido, fecha_pedido, referencia_libro, \n " +
-                     "referencia_cliente, cantidad_compra, monto_total \n " +
-                     "FROM ventas;";
-        
-        try {        
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            
-            ResultSetMetaData rsMD = rs.getMetaData();
-            int cantidadColumnas = rsMD.getColumnCount();
-            
-            tModelo.addColumn("numero_pedido");
-            tModelo.addColumn("fecha_pedido");
-            tModelo.addColumn("referencia_libro");
-            tModelo.addColumn("referencia_cliente");
-            tModelo.addColumn("cantidad_compra");
-            tModelo.addColumn("monto_total");
-            
-            while (rs.next()) {
-                Object[] filas = new Object[cantidadColumnas];
-                
-                for(int i=0; i<cantidadColumnas; i++){
-                    filas[i] = rs.getObject(i + 1);
-                }
-                
-                tModelo.addRow(filas);
-            }
-                
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage()); // ex.toString()
-        }
     }
 
     /**

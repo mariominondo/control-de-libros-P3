@@ -10,7 +10,7 @@ public class Libro {
     private String genero_literario;
     private String editorial;
     private String autor;
-    private String anio_edicion;
+    private int anio_edicion;
     private int numero_edicion;
     private String pais_origen;
     private int numero_paginas;
@@ -57,11 +57,11 @@ public class Libro {
         this.autor = autor;
     }
 
-    public String getAnio_edicion() {
+    public int getAnio_edicion() {
         return anio_edicion;
     }
 
-    public void setAnio_edicion(String anio_edicion) {
+    public void setAnio_edicion(int anio_edicion) {
         this.anio_edicion = anio_edicion;
     }
 

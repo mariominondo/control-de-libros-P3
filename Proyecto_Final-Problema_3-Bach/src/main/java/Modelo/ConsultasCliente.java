@@ -51,7 +51,6 @@ public class ConsultasCliente extends MiConexion{
             ps.setString(5, cliente.getEmail());
             ps.setInt(6, cliente.getId_cliente());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Cliente modificado exitosamente!");
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -77,8 +76,7 @@ public class ConsultasCliente extends MiConexion{
             ps.execute();
             return true;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            return false;
+             return false;
         } finally {
             try {
                 con.close();
@@ -109,7 +107,6 @@ public class ConsultasCliente extends MiConexion{
           }
           return true;
       } catch (SQLException e) {
-          JOptionPane.showMessageDialog(null, e.getMessage());
           return false;
       } finally {
           try {

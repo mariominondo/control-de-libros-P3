@@ -42,7 +42,9 @@ public class ConsultasVenta extends MiConexion{
         PreparedStatement ps = null;
         Connection con = getConnection();
         
-        String sql = "UPDATE ventas SET numero_pedido=?, fecha_pedido=?, referencia_libro=?, referencia_cliente=?, cantidad_compra=?, monto_total=?, WHERE numero_pedido=?;";   
+        String sql = "UPDATE ventas SET numero_pedido=?, fecha_pedido=?, \n " +
+                "referencia_libro=?, referencia_cliente=?, cantidad_compra=?, \n "+
+                "monto_total=? WHERE numero_pedido=?;";   
                 
         try {
             ps = con.prepareStatement(sql);

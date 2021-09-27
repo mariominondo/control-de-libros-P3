@@ -15,55 +15,6 @@ public class FormTablaLibros extends javax.swing.JFrame {
 
     public FormTablaLibros() {
         initComponents();
-        
-        txtBuscar.setText("Buscar...");
-        
-        DefaultTableModel tModelo = new DefaultTableModel();
-        jtTablaLibros.setModel(tModelo);
-        
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        
-        MiConexion miCon = new MiConexion();
-        
-        Connection con = miCon.getConnection();
-        
-        String sql = "SELECT codigo_libro, titulo, genero_literario, editorial, \n"+
-                "autor, anio_edicion, numero_edicion, pais_origen, numero_paginas, \n" +
-                "cantidad_ejemplares, precio FROM libros;";
-        
-        try {        
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            
-            ResultSetMetaData rsMD = rs.getMetaData();
-            int cantidadColumnas = rsMD.getColumnCount();
-            
-            tModelo.addColumn("codigo_libro");
-            tModelo.addColumn("titulo");
-            tModelo.addColumn("genero_literario");
-            tModelo.addColumn("editorial");
-            tModelo.addColumn("autor");
-            tModelo.addColumn("anio_edicion");
-            tModelo.addColumn("numero_edicion");
-            tModelo.addColumn("pais_origen");
-            tModelo.addColumn("cantidad_ejemplares");
-            tModelo.addColumn("numero_paginas");
-            tModelo.addColumn("precio");
-            
-            while (rs.next()) {
-                Object[] filas = new Object[cantidadColumnas];
-                
-                for(int i=0; i<cantidadColumnas; i++){
-                    filas[i] = rs.getObject(i + 1);
-                }
-                
-                tModelo.addRow(filas);
-            }
-                
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage()); // ex.toString()
-        }
     }
 
     /**
