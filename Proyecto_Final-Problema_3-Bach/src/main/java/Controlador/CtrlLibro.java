@@ -122,15 +122,15 @@ public class CtrlLibro implements ActionListener {
            this.modLibro.setCantidad_ejemplares(Integer.parseInt(this.frmLibro.tfCantidadEjemplares.getText()));
            this.modLibro.setPrecio(Double.parseDouble(this.frmLibro.tfPrecioVenta.getText()));
            if(this.modConsultasLibro.crear(this.modLibro)) {
-                JOptionPane.showMessageDialog(null, "Libro guardado correctamente.");  
                 actualizaTabla();               
+                JOptionPane.showMessageDialog(null, "Libro guardado correctamente.");  
            } else {
                 JOptionPane.showMessageDialog(null, "Error al Guardar.");
            }
         }
        
         if(e.getSource() == this.frmLibro.btnModificar){           
-//           this.modLibro.setCodigo_libro(Integer.parseInt(this.frmLibro.tfCodigo.getText()));
+           this.modLibro.setCodigo_libro(Integer.parseInt(this.frmLibro.tfCodigo.getText()));
            this.modLibro.setTitulo(this.frmLibro.tfTitulo.getText());
            this.modLibro.setGenero_literario(this.frmLibro.tfGeneroLiterario.getText());
            this.modLibro.setEditorial(this.frmLibro.tfEditorial.getText());
@@ -141,32 +141,44 @@ public class CtrlLibro implements ActionListener {
            this.modLibro.setNumero_paginas(Integer.parseInt(this.frmLibro.tfNoPaginas.getText()));
            this.modLibro.setCantidad_ejemplares(Integer.parseInt(this.frmLibro.tfCantidadEjemplares.getText()));
            this.modLibro.setPrecio(Double.parseDouble(this.frmLibro.tfPrecioVenta.getText()));
-           if(this.modConsultasLibro.crear(this.modLibro)) {
-                JOptionPane.showMessageDialog(null, "Libro guardado correctamente.");  
-                actualizaTabla();               
+           if(this.modConsultasLibro.modificar(this.modLibro)) { 
+                actualizaTabla();
+                JOptionPane.showMessageDialog(null, "Libro modificado correctamente.");                
            } else {
                  JOptionPane.showMessageDialog(null, "Error al Guardar.");
            }
         }
         
         if(e.getSource() == this.frmTablaLibros.btnBuscar){  
-           // txtBuscar ----
-           // this.modLibro.setCodigo_libro(Integer.parseInt(this.frmLibro.tfCodigo.getText()));
            
            this.modLibro.setCodigo_libro(Integer.parseInt(this.frmTablaLibros.txtBuscar.getText()));
 
-//           this.frmLibro.tfTitulo.setText(this.modLibro.getTitulo());
-//           this.frmLibro.tfGeneroLiterario.setText(this.modLibro.getGenero_literario());
-//           this.frmLibro.tfEditorial.setText(this.modLibro.getEditorial());
-//           this.frmLibro.tfAutor.setText(this.modLibro.getAutor());
-//           this.frmLibro.tYearAnioEdicion.setYear(this.modLibro.getAnio_edicion());
-//           this.frmLibro.tfNoEdicion.setText(String.valueOf(this.modLibro.getNumero_edicion()));
-//           this.frmLibro.tfPaisOrigen.setText(this.modLibro.getPais_origen());
-//           this.frmLibro.tfNoPaginas.setText(String.valueOf(this.modLibro.getNumero_paginas()));
-//           this.frmLibro.tfCantidadEjemplares.setText(String.valueOf(this.modLibro.getCantidad_ejemplares()));
-//           this.frmLibro.tfPrecioVenta.setText(String.valueOf(this.modLibro.getPrecio()));
-           if(this.modConsultasLibro.buscar(this.modLibro)) {
-                JOptionPane.showMessageDialog(null, "Libro encontrado correctamente.");  
+           if(this.modConsultasLibro.buscar(this.modLibro)) { 
+                this.frmLibro.setVisible(true);   
+                
+                this.frmLibro.tfCodigo.setText(String.valueOf(this.modLibro.getCodigo_libro()));
+                this.frmLibro.tfTitulo.setText(this.modLibro.getTitulo());
+                this.frmLibro.tfGeneroLiterario.setText(this.modLibro.getGenero_literario());
+                this.frmLibro.tfEditorial.setText(this.modLibro.getEditorial());
+                this.frmLibro.tfAutor.setText(this.modLibro.getAutor());
+                this.frmLibro.tYearAnioEdicion.setYear(this.modLibro.getAnio_edicion());
+                this.frmLibro.tfNoEdicion.setText(String.valueOf(this.modLibro.getNumero_edicion()));
+                this.frmLibro.tfPaisOrigen.setText(this.modLibro.getPais_origen());
+                this.frmLibro.tfNoPaginas.setText(String.valueOf(this.modLibro.getNumero_paginas()));
+                this.frmLibro.tfCantidadEjemplares.setText(String.valueOf(this.modLibro.getCantidad_ejemplares()));
+                this.frmLibro.tfPrecioVenta.setText(String.valueOf(this.modLibro.getPrecio()));
+           } else {
+                JOptionPane.showMessageDialog(null, "No se encontró el libro.");
+           }
+        }
+        
+        if(e.getSource() == this.frmLibro.btnEliminar){
+           
+           this.modLibro.setCodigo_libro(Integer.parseInt(this.frmLibro.tfCodigo.getText()));
+
+           if(this.modConsultasLibro.eliminar(this.modLibro)) {
+                actualizaTabla();  
+                JOptionPane.showMessageDialog(null, "Libro eliminado correctamente.");                 
                 this.frmLibro.setVisible(true);             
            } else {
                 JOptionPane.showMessageDialog(null, "No se encontró el libro.");

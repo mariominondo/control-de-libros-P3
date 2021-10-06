@@ -46,7 +46,7 @@ public class ConsultasLibro extends MiConexion{
         PreparedStatement ps = null;
         Connection con = getConnection();
         
-        String sql = "UPDATE libros SET (titulo=?,genero_literario=?, editorial=?, autor=?, anio_edicion=?, numero_edicion=?, pais_origen=?, numero_paginas=?, cantidad_ejemplares=?, precio=?, WHERE codigo_libro=?;";   
+        String sql = "UPDATE libros SET titulo=?, genero_literario=?, editorial=?, autor=?, anio_edicion=?, numero_edicion=?, pais_origen=?, numero_paginas=?, cantidad_ejemplares=?, precio=? WHERE codigo_libro=?;";   
                 
         try {
             ps = con.prepareStatement(sql);
@@ -62,7 +62,6 @@ public class ConsultasLibro extends MiConexion{
             ps.setDouble(10, libro.getPrecio());            
             ps.setInt(11, libro.getCodigo_libro());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Libro modificado exitosamente!");
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -86,7 +85,6 @@ public class ConsultasLibro extends MiConexion{
             ps = con.prepareStatement(sql);          
             ps.setInt(1, libro.getCodigo_libro());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Libro eliminado exitosamente!");
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -118,7 +116,7 @@ public class ConsultasLibro extends MiConexion{
               libro.setGenero_literario(rs.getString("genero_literario"));
               libro.setEditorial(rs.getString("editorial"));
               libro.setAutor(rs.getString("autor"));
-              libro.setAnio_edicion(Integer.parseInt(rs.getString("anio_edicion")));
+              libro.setAnio_edicion(rs.getInt("anio_edicion"));
               libro.setNumero_edicion(Integer.parseInt(rs.getString("numero_edicion")));
               libro.setPais_origen(rs.getString("pais_origen"));
               libro.setNumero_paginas(Integer.parseInt(rs.getString("numero_paginas")));
