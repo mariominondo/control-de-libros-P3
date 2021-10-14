@@ -36,10 +36,10 @@ public class CtrlEjemplar implements ActionListener {
                 
         this.frmTablaEjemplares.btnCrear.addActionListener(this);
         this.frmTablaEjemplares.btnBuscar.addActionListener(this);
-        this.frmTablaEjemplares.txtBuscar.setText("Buscar...");
+        //this.frmTablaEjemplares.txtBuscar.setText("Buscar...");
         
         this.frmEjemplar.btnCrear.addActionListener(this);
-        this.frmEjemplar.btnModificar.addActionListener(this);
+        //this.frmEjemplar.btnModificar.addActionListener(this);
         this.frmEjemplar.btnEliminar.addActionListener(this);
     }
     
@@ -80,6 +80,8 @@ public class CtrlEjemplar implements ActionListener {
         }
     }
     
+ 
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -104,10 +106,41 @@ public class CtrlEjemplar implements ActionListener {
            }
        }
        
+       /*if(e.getSource() == this.frmEjemplar.btnModificar){
+           this.modEjemplar.setNumero(Integer.parseInt(this.frmEjemplar.txtNumero.getText()));
+           this.modEjemplar.setReferencia_libro(Integer.parseInt(this.frmEjemplar.txtReferenciaLibro.getText()));
+           
+           if(this.modConsultasEjemplar.modificar(this.modEjemplar)) {               
+            JOptionPane.showMessageDialog(null, "Ejemplar modificado exitosamente!");
+            actualizaTablaEjemplares();
+           } else {
+               JOptionPane.showMessageDialog(null, "Error al crear.");
+           }
+       }*/
+       
        if(e.getSource() == this.frmEjemplar.btnEliminar) {
+           this.modEjemplar.setNumero(Integer.parseInt(this.frmEjemplar.txtNumero.getText()));
+           this.modEjemplar.setReferencia_libro(Integer.parseInt(this.frmEjemplar.txtReferenciaLibro.getText()));
+           
            if(this.modConsultasEjemplar.eliminar(this.modEjemplar)) {
-               JOptionPane.showMessageDialog(null, "Ejemplar Eliminado Correctamente.");
                actualizaTablaEjemplares();
+               JOptionPane.showMessageDialog(null, "Ejemplar Eliminado Correctamente.");
+           } else {
+               JOptionPane.showMessageDialog(null, "El ejemplar no se puedo eliminar.");
+           }
+       }
+       
+       if(e.getSource() == this.frmTablaEjemplares.btnBuscar) {
+           this.modEjemplar.setNumero(Integer.parseInt(this.frmTablaEjemplares.txtBuscar.getText()));
+//           this.modEjemplar.setReferencia_libro(Integer.parseInt(this.frmTablaEjemplares.txtBuscar.getText())); // Buscar referencia libro
+           
+           if(this.modConsultasEjemplar.buscar(this.modEjemplar)) {
+               this.frmEjemplar.setVisible(true);   
+                
+                this.frmEjemplar.txtNumero.setText(String.valueOf(this.modEjemplar.getNumero()));
+                //this.frmEjemplar.txtReferenciaLibro.setText(String.valueOf(this.modEjemplar.getReferencia_libro()));
+                
+               JOptionPane.showMessageDialog(null, "Ejemplar Eliminado Correctamente.");
            } else {
                JOptionPane.showMessageDialog(null, "El ejemplar no se puedo eliminar.");
            }

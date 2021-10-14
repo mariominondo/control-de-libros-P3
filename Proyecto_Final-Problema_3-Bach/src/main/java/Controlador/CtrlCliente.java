@@ -36,7 +36,7 @@ public class CtrlCliente implements ActionListener {
                 
         this.frmTablaClientes.btnCrear.addActionListener(this);
         this.frmTablaClientes.btnBuscar.addActionListener(this);
-        this.frmTablaClientes.txtBuscar.setText("Buscar...");
+        //this.frmTablaClientes.txtBuscar.setText("Buscar...");
         
         this.frmCliente.btnCrear.addActionListener(this);
         this.frmCliente.btnModificar.addActionListener(this);
@@ -104,12 +104,13 @@ public class CtrlCliente implements ActionListener {
            this.modCliente.setEmail(this.frmCliente.txtEmail.getText());
            
            if(this.modConsultasCliente.crear(this.modCliente)) {
-               JOptionPane.showMessageDialog(null, "Cliente creado exitosamente!");
                actualizaTablaClientes();
+               JOptionPane.showMessageDialog(null, "Cliente creado exitosamente!");
            } else {
                JOptionPane.showMessageDialog(null, "Error al Crear");
            }
        }
+       
        
        if (e.getSource() == this.frmCliente.btnModificar) {
            this.modCliente.setId_cliente(Integer.parseInt(this.frmCliente.txtCodigoDeUsuario.getText()));
@@ -119,8 +120,8 @@ public class CtrlCliente implements ActionListener {
            this.modCliente.setEmail(this.frmCliente.txtEmail.getText());
            
            if(this.modConsultasCliente.modificar(this.modCliente)) {
-               JOptionPane.showMessageDialog(null, "Cliente modificado exitosamente!");
                actualizaTablaClientes();
+               JOptionPane.showMessageDialog(null, "Cliente modificado exitosamente!");
            } else {
                JOptionPane.showMessageDialog(null, "Error al Modificar");
            }
@@ -130,12 +131,31 @@ public class CtrlCliente implements ActionListener {
            this.modCliente.setId_cliente(Integer.parseInt(this.frmCliente.txtCodigoDeUsuario.getText()));
            
            if(this.modConsultasCliente.eliminar(this.modCliente)) {
-                JOptionPane.showMessageDialog(null, "Cliente eliminado");
                 actualizaTablaClientes();
+                JOptionPane.showMessageDialog(null, "Cliente eliminado");
            } else {
                JOptionPane.showMessageDialog(null, "Error al Eliminar");
            }
        }
+       
+       
+       if(e.getSource() == this.frmTablaClientes.btnBuscar){  
+           
+           this.modCliente.setId_cliente(Integer.parseInt(this.frmTablaClientes.txtBuscar.getText()));
+
+           if(this.modConsultasCliente.buscar(this.modCliente)) { 
+                this.frmCliente.setVisible(true);   
+                
+                this.frmCliente.txtCodigoDeUsuario.setText(String.valueOf(this.modCliente.getId_cliente()));
+                this.frmCliente.txtDireccion.setText(this.modCliente.getDireccion());
+                this.frmCliente.txtEmail.setText(this.modCliente.getEmail());
+                this.frmCliente.txtNombre.setText(this.modCliente.getNombre());
+                this.frmCliente.txtTelefono.setText(this.modCliente.getTelefono());
+                        
+           } else {
+                JOptionPane.showMessageDialog(null, "No se encontró el libro.");
+           }
+        }
         
     }
     

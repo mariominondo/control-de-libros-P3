@@ -121,8 +121,8 @@ public class CtrlVenta implements ActionListener {
            this.modVenta.setNumero_pedido(Integer.parseInt(this.frmVenta.txtNoDePedido.getText()));
 
            if (this.modConsultasVenta.crear(this.modVenta)) {
-               JOptionPane.showMessageDialog(null, "Venta Creada correctamente");
                actualizaTablaVentas();
+               JOptionPane.showMessageDialog(null, "Venta Creada correctamente");
            } else {
                JOptionPane.showMessageDialog(null, "Error al crear la Venta");
            }
@@ -142,8 +142,8 @@ public class CtrlVenta implements ActionListener {
            this.modVenta.setMonto_total(Double.parseDouble(this.frmVenta.txtMonto.getText()));
            
            if (this.modConsultasVenta.modificar(this.modVenta)) {
-               JOptionPane.showMessageDialog(null, "Venta Modificada correctamente");
                actualizaTablaVentas();
+               JOptionPane.showMessageDialog(null, "Venta Modificada correctamente");
            } else {
                JOptionPane.showMessageDialog(null, "Error al modificar la Venta");
            }
@@ -153,13 +153,33 @@ public class CtrlVenta implements ActionListener {
            this.modVenta.setNumero_pedido(Integer.parseInt(this.frmVenta.txtNoDePedido.getText()));
            
            if(this.modConsultasVenta.eliminar(this.modVenta)) {
-                JOptionPane.showMessageDialog(null, "Venta eliminada");
                 actualizaTablaVentas();
+                JOptionPane.showMessageDialog(null, "Venta eliminada");
            } else {
                JOptionPane.showMessageDialog(null, "Error al Eliminar");
            }
        }
        
+       
+        if (e.getSource() == this.frmTablaVentas.btnBuscar) {
+           this.modVenta.setNumero_pedido(Integer.parseInt(this.frmTablaVentas.txtBuscar.getText()));
+           
+           if(this.modConsultasVenta.buscar(this.modVenta)) {
+                this.frmVenta.setVisible(true);
+                
+                this.frmVenta.txtNoDePedido.setText(String.valueOf(this.modVenta.getNumero_pedido()));
+                this.frmVenta.jdateFechaPedido.setDate(this.modVenta.getFecha_pedido());
+                this.frmVenta.txtCantidad.setText(String.valueOf(this.modVenta.getCantidad_compra()));
+                this.frmVenta.txtMonto.setText(String.valueOf(this.modVenta.getMonto_total()));
+                this.frmVenta.txtNoDePedido.setText(String.valueOf(this.modVenta.getNumero_pedido()));
+                this.frmVenta.txtReferenciaCliente.setText(String.valueOf(this.modVenta.getReferencia_cliente()));
+                this.frmVenta.txtReferenciaLibro.setText(String.valueOf(this.modVenta.getReferencia_libro()));
+                
+                
+           } else {
+               JOptionPane.showMessageDialog(null, "No se encontró");
+           }
+       }
         
     }
     

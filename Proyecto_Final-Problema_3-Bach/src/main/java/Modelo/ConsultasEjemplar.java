@@ -37,7 +37,7 @@ public class ConsultasEjemplar extends MiConexion{
         PreparedStatement ps = null;
         Connection con = getConnection();
         
-        String sql = "UPDATE ejemplares SET (numero=?, referencia_libro=? WHERE numero=? AND referencia_libro=?;";   
+        String sql = "UPDATE ejemplares SET numero=?, referencia_libro=? WHERE numero=? AND referencia_libro=?;";   
                 
         try {
             ps = con.prepareStatement(sql);
@@ -46,7 +46,6 @@ public class ConsultasEjemplar extends MiConexion{
             ps.setDouble(3, ejemplar.getNumero());            
             ps.setInt(4, ejemplar.getReferencia_libro());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Ejemplar modificado exitosamente!");
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -71,7 +70,6 @@ public class ConsultasEjemplar extends MiConexion{
             ps.setInt(1, ejemplar.getNumero());  
             ps.setInt(2, ejemplar.getReferencia_libro());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Libro eliminado exitosamente!");
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -90,12 +88,12 @@ public class ConsultasEjemplar extends MiConexion{
       ResultSet rs = null;
       Connection con = getConnection();
 
-      String sql = "SELECT * FROM ejemplares WHERE numero=? AND referencia_libro=?;";   
+      String sql = "SELECT * FROM ejemplares WHERE numero=?;"; // AND referencia_libro=?;";   
 
       try {
           ps = con.prepareStatement(sql);          
           ps.setInt(1, ejemplar.getNumero()); 
-          ps.setInt(2, ejemplar.getReferencia_libro());
+          //ps.setInt(2, ejemplar.getReferencia_libro());
           rs = ps.executeQuery();
           
           if(rs.next()){

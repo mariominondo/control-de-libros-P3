@@ -36,7 +36,7 @@ public class CtrlLibro implements ActionListener {
                 
         this.frmTablaLibros.btnCrear.addActionListener(this);
         this.frmTablaLibros.btnBuscar.addActionListener(this);
-        this.frmTablaLibros.txtBuscar.setText("Buscar...");
+        //this.frmTablaLibros.txtBuscar.setText("Buscar...");
         
         // Agregar otros Botones
         this.frmLibro.btnAgregar.addActionListener(this);
@@ -171,6 +171,7 @@ public class CtrlLibro implements ActionListener {
                 JOptionPane.showMessageDialog(null, "No se encontró el libro.");
            }
         }
+        
         
         if(e.getSource() == this.frmLibro.btnEliminar){
            
